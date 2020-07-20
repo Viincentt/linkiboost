@@ -1,0 +1,6 @@
+{
+  "email" : "john.smith@mail.com",
+  "pwd": "mypassword",
+  "driver" : "path/to/driver",
+  "endorse" : ["John Smith"]
+}
