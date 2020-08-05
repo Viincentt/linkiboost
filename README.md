@@ -3,7 +3,7 @@
 
 This script leverages the power of automation by endorsing the highlighted skills on Linkedin of your teammates, family members, friends...
 
-It will only endorse the skills that have not already been endorsed. Those previously approved will remain still.
+It will only endorse the skills that have not been endorsed yet. Those previously approved will remain still.
 
 **NOTE**: you can still hide people who endorsed you directly on Linkedin if you don't want them to support you.
 
