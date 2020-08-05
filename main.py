@@ -22,17 +22,15 @@ def endorse(driver):
     except TimeoutException:
         print("Can not scroll to load skills.")
         return
-    driver.execute_script("window.scrollTo(0, 3 * document.body.scrollHeight / 4);")
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 2);")
     skills = '//ol[contains(@class, "pv-skill-categories-section__top-skills")]/li'
     buttons = './/div[1]/div[1]/div[1]/button'
     try:
         for skill in wait.until(EC.presence_of_all_elements_located((By.XPATH, skills))):
             button = WebDriverWait(skill, delay).until(EC.element_to_be_clickable((By.XPATH, buttons)))
             if button.get_attribute("aria-pressed") != "true":
-                # driver.execute_script("arguments[0].click();", button)
-                pass
-        print("OK")
+                driver.execute_script("arguments[0].click();", button)
+        print(f"\033[92mOK\033[0m")
     except TimeoutException:
         print("Can not endorse skills")
         return
