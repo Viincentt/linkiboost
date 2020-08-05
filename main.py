@@ -50,9 +50,9 @@ def goProfil(driver, plebeian):
         print(dude + ": ", end="")
         driver.get(getUrl(dude))
         try:
-            # Check that the person has a Linkedin account
+            # Check the person has a Linkedin account
             wait.until(EC.visibility_of_all_elements_located((By.XPATH, potentialDude)))
-            # Checking we are connected to this person
+            # Check you are connected to this person
             wait.until(EC.text_to_be_present_in_element((By.XPATH, potentialDude + message), "Message"))
             wait.until(EC.element_to_be_clickable((By.XPATH, potentialDude + profile))).click()
         except TimeoutException:
