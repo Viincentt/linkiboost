@@ -19,10 +19,10 @@ def endorse(driver):
     wait = WebDriverWait(driver, delay)
     try:
         wait.until(EC.presence_of_element_located((By.ID, "profile-content")))
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 2);")
     except TimeoutException:
-        print("Can not scroll to load skills.")
+        print("Error on scroll to load skills.")
         return
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 2);")
     skills = '//ol[contains(@class, "pv-skill-categories-section__top-skills")]/li'
     buttons = './/div[1]/div[1]/div[1]/button'
     try:
@@ -32,7 +32,7 @@ def endorse(driver):
                 driver.execute_script("arguments[0].click();", button)
         print(f"\033[92mOK\033[0m")
     except TimeoutException:
-        print("Can not endorse skills")
+        print("Endorsements failed")
         return
 
 
