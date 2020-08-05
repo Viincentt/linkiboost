@@ -3,9 +3,9 @@
 
 This project is blablabla
 - Endorse the highlighted skills of your teammates
-- Won't cancel previous endorsements
+- Won't undo previously endorsed skills
 - Check the log
-- Note: you can still hide people who endorsed you if you don't want them to support you.
+- **NOTE**: you can still hide people who endorsed you if you don't want them to support you.
 
 
 ## Requirements
