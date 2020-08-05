@@ -5,8 +5,6 @@ This script leverages the power of automation by endorsing the highlighted skill
 
 It will only endorse the skills that have not already been endorsed. Those previously approved will remain still.
 
-On execution, one can check the logs to be sure everything is fine.
-
 **NOTE**: you can still hide people who endorsed you directly on Linkedin if you don't want them to support you.
 
 
@@ -38,4 +36,5 @@ python main.py config.json
 ## TODO
 - Send invitation when not connected
 - Select level and origin of skills
+- Add tests
 ---
