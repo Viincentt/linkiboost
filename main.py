@@ -15,7 +15,6 @@ def endorse(driver):
     """
     Endorse the person
     :param driver: Web driver
-    :return:
     """
     wait = WebDriverWait(driver, delay)
     try:
@@ -23,7 +22,6 @@ def endorse(driver):
     except TimeoutException:
         print("Can not scroll to load skills.")
         return
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 2);")
     driver.execute_script("window.scrollTo(0, 3 * document.body.scrollHeight / 4);")
     driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
     skills = '//ol[contains(@class, "pv-skill-categories-section__top-skills")]/li'
@@ -73,7 +71,6 @@ def connect(conf):
     """
     Connect to the Linkedin account
     :param conf: json config
-    :return:
     """
     try:
         driver = Chrome(conf[keys[2]])
