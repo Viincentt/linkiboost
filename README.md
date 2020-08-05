@@ -1,11 +1,13 @@
 # Linkiboost
 *Wanna be nice and corporate? Endorse your teammates!*
 
-This project is blablabla
-- Endorse the highlighted skills of your teammates
-- Won't undo previously endorsed skills
-- Check the log
-- **NOTE**: you can still hide people who endorsed you if you don't want them to support you.
+This script leverages the power of automation by endorsing the highlighted skills of your teammates, family members, friends...
+
+It will only endorse the skills that have not already been endorsed. Those previously approved will remain still.
+
+On execution, one can check the logs to be sure everything is fine.
+
+**NOTE**: you can still hide people who endorsed you directly on Linkedin if you don't want them to support you.
 
 
 ## Requirements
@@ -34,5 +36,6 @@ This project is blablabla
 python main.py config.json
 ```
 ## TODO
-- Send invitation when not connected to someone you want to endorse
+- Send invitation when not connected
+- Select level and origin of skills
 ---
