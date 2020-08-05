@@ -5,7 +5,7 @@ This script leverages the power of automation by endorsing the highlighted skill
 
 It will only endorse the skills that have not been endorsed yet. Those previously approved will remain still.
 
-**NOTE**: you can still hide people who endorsed you directly on Linkedin if you don't want them to support you.
+**NOTE**: you can hide people who endorsed you directly on Linkedin if you don't want them to support you.
 
 
 ## Requirements
