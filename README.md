@@ -34,6 +34,7 @@ It will only endorse the skills that have not already been endorsed. Those previ
 python main.py config.json
 ```
 ## TODO
+- Find a consistent way to load skills
 - Send invitation when not connected
 - Select level and origin of skills
 - Add tests
