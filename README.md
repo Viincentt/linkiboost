@@ -31,6 +31,7 @@ This project is blablabla
 python main.py config.json
 ```
 ## TODO
-add 2020 and 2022
+- Send invitation when not connected to someone
+- add 2020 and 2022
 
 ---
