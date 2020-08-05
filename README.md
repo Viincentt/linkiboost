@@ -1,7 +1,7 @@
 # Linkiboost
 *Wanna be nice and corporate? Endorse your teammates!*
 
-This script leverages the power of automation by endorsing the highlighted skills of your teammates, family members, friends...
+This script leverages the power of automation by endorsing the highlighted skills on Linkedin of your teammates, family members, friends...
 
 It will only endorse the skills that have not already been endorsed. Those previously approved will remain still.
 
