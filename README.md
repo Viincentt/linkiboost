@@ -37,5 +37,6 @@ python main.py config.json
 - Find a consistent way to load skills
 - Send invitation when not connected
 - Select level and origin of skills
+- Upgrade to non developer users
 - Add tests
 ---
