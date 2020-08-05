@@ -43,8 +43,8 @@ def goProfil(driver, plebeian):
     :param plebeian: List of persons to endorse
     """
     potentialDude = '//div[@class="display-flex"]/div/div/div/ul/li[1]/div/div'
-    message = '/div[3]/div'
     profile = '/div[2]/a'
+    distValue = '/div[2]/a/h3/span/span/span[2]/span[2]'
     wait = WebDriverWait(driver, delay)
     for dude in plebeian:
         print(dude + ": ", end="")
@@ -53,8 +53,9 @@ def goProfil(driver, plebeian):
             # Check the person has a Linkedin account
             wait.until(EC.visibility_of_all_elements_located((By.XPATH, potentialDude)))
             # Check you are connected to this person
-            wait.until(EC.text_to_be_present_in_element((By.XPATH, potentialDude + message), "Message"))
-            wait.until(EC.element_to_be_clickable((By.XPATH, potentialDude + profile))).click()
+            wait.until(EC.text_to_be_present_in_element((By.XPATH, potentialDude + distValue), "1"))
+            profileLink = wait.until(EC.element_to_be_clickable((By.XPATH, potentialDude + profile)))
+            driver.execute_script("arguments[0].click();", profileLink)
         except TimeoutException:
             print("Not found")
             continue
@@ -83,10 +84,16 @@ def connect(conf):
         wait.until(EC.element_to_be_clickable((By.ID, username))).send_keys(conf[keys[0]])
         wait.until(EC.element_to_be_clickable((By.ID, password))).send_keys(conf[keys[1]])
         wait.until(EC.element_to_be_clickable((By.XPATH, myButtonXpath))).send_keys(Keys.ENTER)
-        # Sanity check
-        wait.until(EC.visibility_of_element_located((By.ID, "global-nav")))
     except TimeoutException:
         sys.exit("Error while signing in.")
+    # Sanity check
+    try:
+        wait.until(EC.visibility_of_element_located((By.ID, "global-nav")))
+    except TimeoutException:
+        try:
+            wait.until(EC.visibility_of_element_located((By.ID, "extended-nav")))
+        except TimeoutException:
+            sys.exit("Error while signing in.")
     goProfil(driver, conf[keys[3]])
 
 
