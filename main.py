@@ -18,7 +18,7 @@ def endorse(driver):
     """
     wait = WebDriverWait(driver, delay)
     try:
-        wait.until(EC.presence_of_element_located((By.ID, "profile-content")))
+        wait.until(EC.visibility_of_element_located((By.ID, "profile-content")))
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight / 2);")
     except TimeoutException:
         print("Error on scroll to load skills.")
