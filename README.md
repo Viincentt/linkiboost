@@ -2,6 +2,10 @@
 *Wanna be nice and corporate? Endorse your teammates!*
 
 This project is blablabla
+- Endorse the highlighted skills of your teammates
+- Won't cancel previous endorsements
+- Check the log
+- Note: you can still hide people who endorsed you if you don't want them to support you.
 
 
 ## Requirements
