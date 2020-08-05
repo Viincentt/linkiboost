@@ -15,9 +15,8 @@ This project is blablabla
   - Other: *https://chromedriver.chromium.org/*
 ## Installation
 - Fill your credentials in the json config template
-    - Username
-    - Password
-    - Path to Chrome driver (MacOS: */usr/local/bin/chromedriver*)
+    - Linkedin username and password
+    - Path to the Chrome driver installed above (MacOS: */usr/local/bin/chromedriver*)
     - List of person(s) to endorse
 - Venv
     ```shell script
@@ -31,7 +30,5 @@ This project is blablabla
 python main.py config.json
 ```
 ## TODO
-- Send invitation when not connected to someone
-- add 2020 and 2022
-
+- Send invitation when not connected to someone you want to endorse
 ---
