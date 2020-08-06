@@ -32,8 +32,7 @@ def endorse(driver):
         for skill in wait.until(EC.presence_of_all_elements_located((By.XPATH, skills))):
             btn = WebDriverWait(skill, delay).until(EC.element_to_be_clickable((By.XPATH, buttons)))
             if btn.get_attribute("aria-pressed") != "true":
-                # driver.execute_script("arguments[0].click();", btn)
-                pass
+                driver.execute_script("arguments[0].click();", btn)
         print("\033[92mOK\033[0m")
     except TimeoutException:
         print("Endorsements failed")
