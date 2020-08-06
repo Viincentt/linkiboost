@@ -1,3 +1,6 @@
+"""
+Script for endorsement automation on Linkedin.
+"""
 import json
 import sys
 
@@ -27,43 +30,49 @@ def endorse(driver):
     buttons = './/div[1]/div[1]/div[1]/button'
     try:
         for skill in wait.until(EC.presence_of_all_elements_located((By.XPATH, skills))):
-            button = WebDriverWait(skill, delay).until(EC.element_to_be_clickable((By.XPATH, buttons)))
-            if button.get_attribute("aria-pressed") != "true":
-                driver.execute_script("arguments[0].click();", button)
-        print(f"\033[92mOK\033[0m")
+            btn = WebDriverWait(skill, delay).until(EC.element_to_be_clickable((By.XPATH, buttons)))
+            if btn.get_attribute("aria-pressed") != "true":
+                # driver.execute_script("arguments[0].click();", btn)
+                pass
+        print("\033[92mOK\033[0m")
     except TimeoutException:
         print("Endorsements failed")
         return
 
 
-def goProfil(driver, plebeian):
+def go_profil(driver, plebeian):
     """
     Find the profile of the person to endorse
     :param driver: Web driver
     :param plebeian: List of persons to endorse
     """
-    potentialDude = '//div[@class="display-flex"]/div/div/div/ul/li[1]/div/div'
+    potential = '//div[@class="display-flex"]/div/div/div/ul/li[1]/div/div'
     profile = '/div[2]/a'
-    distValue = '/div[2]/a/h3/span/span/span[2]/span[2]'
+    dist_value = '/div[2]/a/h3/span/span/span[2]/span[2]'
     wait = WebDriverWait(driver, delay)
     for dude in plebeian:
         print(dude + ": ", end="")
-        driver.get(getUrl(dude))
+        driver.get(get_url(dude))
         try:
             # Check the person has a Linkedin account
-            wait.until(EC.visibility_of_all_elements_located((By.XPATH, potentialDude)))
+            wait.until(EC.visibility_of_all_elements_located((By.XPATH, potential)))
             # Check you are connected to this person
-            wait.until(EC.text_to_be_present_in_element((By.XPATH, potentialDude + distValue), "1"))
-            profileLink = wait.until(EC.element_to_be_clickable((By.XPATH, potentialDude + profile)))
-            driver.execute_script("arguments[0].click();", profileLink)
+            wait.until(EC.text_to_be_present_in_element((By.XPATH, potential + dist_value), "1"))
+            link = wait.until(EC.element_to_be_clickable((By.XPATH, potential + profile)))
+            driver.execute_script("arguments[0].click();", link)
         except TimeoutException:
             print("Not found")
             continue
         endorse(driver)
 
 
-def getUrl(name):
-    return "https://www.linkedin.com/search/results/all/?keywords=" + name + "&origin=GLOBAL_SEARCH_HEADER"
+def get_url(name):
+    """
+    :param name: name of the person to endorse
+    :return: url of the request related to the person
+    """
+    return "https://www.linkedin.com/search/results/all/?keywords=" + name + \
+           "&origin=GLOBAL_SEARCH_HEADER"
 
 
 def connect(conf):
@@ -76,14 +85,14 @@ def connect(conf):
     except WebDriverException:
         sys.exit("Error while opening Chrome driver at " + conf[keys[2]])
     driver.get("https://www.linkedin.com/login")
-    myButtonXpath = '//*[@id="app__container"]/main/div[2]/form/div[3]/button'
+    btn_xpath = '//*[@id="app__container"]/main/div[2]/form/div[3]/button'
     username = "username"
     password = "password"
     wait = WebDriverWait(driver, delay)
     try:
         wait.until(EC.element_to_be_clickable((By.ID, username))).send_keys(conf[keys[0]])
         wait.until(EC.element_to_be_clickable((By.ID, password))).send_keys(conf[keys[1]])
-        wait.until(EC.element_to_be_clickable((By.XPATH, myButtonXpath))).send_keys(Keys.ENTER)
+        wait.until(EC.element_to_be_clickable((By.XPATH, btn_xpath))).send_keys(Keys.ENTER)
     except TimeoutException:
         sys.exit("Error while signing in.")
     # Sanity check
@@ -94,7 +103,7 @@ def connect(conf):
             wait.until(EC.visibility_of_element_located((By.ID, "extended-nav")))
         except TimeoutException:
             sys.exit("Error while signing in.")
-    goProfil(driver, conf[keys[3]])
+    go_profil(driver, conf[keys[3]])
 
 
 def check(conf):
@@ -104,8 +113,8 @@ def check(conf):
     the latter should be a list even if there is no one or only one person to endorse
     """
     for key in keys:
-        if key not in conf or \
-                (key == keys[-1] and type(conf[key]) != list) or (key != keys[-1] and type(conf[key]) != str):
+        if key not in conf or (key == keys[-1] and not isinstance(conf[key], list)) or \
+                (key != keys[-1] and not isinstance(conf[key], str)):
             sys.exit("Error on key: " + key)
 
 
